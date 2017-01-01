@@ -1,0 +1,17 @@
+tranlyvu@tranlyvu-VirtualBox ~/challenge/challenge1 $ make
+make -C /lib/modules/4.4.0-21-generic/build M=/home/tranlyvu/challenge/challenge1  modules
+make[1]: Entering directory '/usr/src/linux-headers-4.4.0-21-generic'
+  Building modules, stage 2.
+  MODPOST 1 modules
+make[1]: Leaving directory '/usr/src/linux-headers-4.4.0-21-generic'
+tranlyvu@tranlyvu-VirtualBox ~/challenge/challenge1 $ sudo insmod hello.ko
+tranlyvu@tranlyvu-VirtualBox ~/challenge/challenge1 $ modinfo hello.ko
+filename:       /home/tranlyvu/challenge/challenge1/hello.ko
+srcversion:     4443A949093EC5BB24FA9B1
+depends:        
+vermagic:       4.4.0-21-generic SMP mod_unload modversions 
+tranlyvu@tranlyvu-VirtualBox ~/challenge/challenge1 $ lsmod|grep hello
+hello                  16384  0
+tranlyvu@tranlyvu-VirtualBox ~/challenge/challenge1 $ sudo rmmod hello.ko
+tranlyvu@tranlyvu-VirtualBox ~/challenge/challenge1 $ lsmod|grep hello
+tranlyvu@tranlyvu-VirtualBox ~/challenge/challenge1 
