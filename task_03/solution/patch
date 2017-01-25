@@ -1,0 +1,13 @@
+> diff --git a/Makefile b/Makefile
+> index 5f1a847..0f6098b 100644
+> --- a/Makefile
+> +++ b/Makefile
+> @@ -1,7 +1,7 @@
+>  VERSION = 4
+>  PATCHLEVEL = 10
+>  SUBLEVEL = 0
+> -EXTRAVERSION = -rc3
+> +EXTRAVERSION = -eudyptula
+>  NAME = Roaring Lionus
+>  
+>  # *DOCUMENTATION*
