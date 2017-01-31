@@ -1,19 +1,22 @@
-1. Clone the linux tree
+1. Install dependencies
+	sudo apt-get install libncurses5-dev gcc make git exuberant-ctags bc libssl-dev
+
+2. Clone the linux tree
 	git clone git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git
 
-2. Copy the current kernel configuration file to new linux folder
+3. Copy the current kernel configuration file to new linux folder
 	cd linux
 	cp /boot/config-`uname -r`* .config
 
-3. Change CONFIG_LOCALVERSION_AUTO=y i .config file
+4. Change CONFIG_LOCALVERSION_AUTO=y i .config file
 
-4. Build the kernelOptional:
+5. Build the kernelOptional:
 
 	make localmodconfig
 
-5. Install the kernel
+6. Install the kernel
 	sudo make modules_install install
 
-6. Reboot
+7. Reboot
 
 

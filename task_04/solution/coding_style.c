@@ -3,19 +3,28 @@
 #include <asm/delay.h>
 #include <linux/slab.h>
 
-int do_work(int *my_int, int retval) 
+int do_work(int *my_int, int retval)
 {
 	int x;
 	int y = *my_int;
 	int z;
+<<<<<<< HEAD
 	
 	for (x = 0; x < *my_int; ++x) 
 		udelay(10);
 	
+=======
+
+	for (x = 0; x < *my_int; ++x)
+		udelay(10);
+
+>>>>>>> 538d67f76d4f3803947180d25236fb0b41989b2a
 
 	if (y < 10)
-		// That was a long sleep, tell userspace about it
-		printk("We slept a long time!");
+		/*
+		 * That was a long sleep, tell userspace about it
+		 */
+		pr_debug("We slept a long time!");
 
 	z = x * y;
 	return z;
