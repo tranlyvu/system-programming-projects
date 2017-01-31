@@ -8,17 +8,11 @@ int do_work(int *my_int, int retval)
 	int x;
 	int y = *my_int;
 	int z;
-<<<<<<< HEAD
+
 	
 	for (x = 0; x < *my_int; ++x) 
 		udelay(10);
 	
-=======
-
-	for (x = 0; x < *my_int; ++x)
-		udelay(10);
-
->>>>>>> 538d67f76d4f3803947180d25236fb0b41989b2a
 
 	if (y < 10)
 		/*
@@ -37,10 +31,6 @@ int my_init(void)
 	return x;
 }
 
-void my_exit(void)
-{
-	return;
-}
 
 module_init(my_init);
 module_exit(my_exit);
