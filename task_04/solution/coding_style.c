@@ -9,10 +9,8 @@ int do_work(int *my_int, int retval)
 	int y = *my_int;
 	int z;
 
-	
-	for (x = 0; x < *my_int; ++x) 
+	for (x = 0; x < *my_int; ++x)
 		udelay(10);
-	
 
 	if (y < 10)
 		/*
@@ -27,6 +25,7 @@ int do_work(int *my_int, int retval)
 int my_init(void)
 {
 	int x = 10;
+
 	x = do_work(&x, x);
 	return x;
 }
