@@ -8,9 +8,9 @@
 	cd linux
 	cp /boot/config-`uname -r`* .config
 
-4. Change CONFIG_LOCALVERSION_AUTO=y i .config file
+4. Change CONFIG_LOCALVERSION_AUTO=y in .config file
 
-5. Build the kernelOptional:
+5. Build the kernel:
 
 	make localmodconfig
 
