@@ -2,27 +2,6 @@
 #include <linux/kernel.h>
 
 
-static int kb_probe(struct usb_interface *interface,
-		const struct usb_device_id *id)
-{
-	pr_alert("USB keyboard plugged in\n");
-	return 0;
-}
-
-static void kb_disconnect(struct usb_interface *interface)
-{
-	pr_alert("USB keyboard disconnected.\n");
-}
-
-
-static struct usb_driver kb_driver = {
-	.owner		 = THIS_MODULE,			
-	.name        = "keyboard",
-	.probe       = kb_probe,
-	.disconnect  = kb_disconnect,
-	.id_table    = kb_table,
-};
-
 static struct usb_device_id kb_table [] = {
         { USB_DEVICE(USB_KB_VENDOR_ID, USB_KB_PRODUCT_ID) },
         { }                      /* Terminating entry */
