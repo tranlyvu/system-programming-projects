@@ -10,7 +10,7 @@
 
 static int __init usb_keyboard_init(void)
 {
-	printk(KERN_INFO "Hello\n");
+	pr_info("Hello\n");
 
 	return 0;
 }
@@ -18,11 +18,14 @@ static int __init usb_keyboard_init(void)
 
 static void __exit usb_keyboard_exit(void)
 {
-        printk(KERN_INFO  "Goodbye\n");
+	pr_info("Goodbye\n");
 }
 
 static struct usb_device_id usb_keyboard_id_table[] = {
-	{ USB_INTERFACE_INFO(USB_INTERFACE_CLASS_HID, USB_INTERFACE_SUBCLASS_BOOT, USB_INTERFACE_PROTOCOL_KEYBOARD) },
+	{ USB_INTERFACE_INFO(
+				USB_INTERFACE_CLASS_HID,
+				USB_INTERFACE_SUBCLASS_BOOT,
+				USB_INTERFACE_PROTOCOL_KEYBOARD) },
 	{}
 };
 
