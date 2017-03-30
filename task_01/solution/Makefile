@@ -2,7 +2,6 @@ ifneq ($(KERNELRELEASE),)
 	obj-m += hello.o
 
 else
-
 	KVERSION = $(shell uname -r)
 	KDIR ?= /lib/modules/$(KVERSION)/build
 	PWD = $(shell pwd) 
