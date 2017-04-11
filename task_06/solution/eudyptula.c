@@ -1,8 +1,9 @@
-#include <linux/module.h>
-#include <linux/kernel.h>
-#include <linux/init.h>
-#include <linux/device.h>
-#include <linux/fs.h>
+#include <linux/init.h>           // Macros used to mark up functions e.g. __init __exit
+#include <linux/module.h>         // Core header for loading LKMs into the kernel
+#include <linux/device.h>         // Header to support the kernel Driver Model
+#include <linux/kernel.h>         // Contains types, macros, functions for the kernel
+#include <linux/fs.h>             // Header for the Linux file system support
+#include <asm/uaccess.h>          // Required for the copy to user function
 
 #define CLASS_NAME "eudyptula"
 #define DEVICE_NAME "eudyptula"
@@ -27,10 +28,8 @@ static ssize_t dev_write(struct file *, const char *, size_t, loff_t *);
 
 static struct file_operations fops =
 {
-	.owner = DRIVER_AUTHOR,
 	.read = device_file_read,
     .write = dev_write,
-    .release = dev_release,
 };
 
 
@@ -56,7 +55,7 @@ static int __init eudyptula_init(void)
    printk(KERN_INFO "eudyptula: device class registered correctly\n");
  
    // Register the device driver
-   ebbcharDevice = device_create(eudyptulaClass, NULL, MKDEV(majorNumber, 0), NULL, DEVICE_NAME);
+   eudyptulaDevice = device_create(eudyptulaClass, NULL, MKDEV(majorNumber, 0), NULL, DEVICE_NAME);
    if (IS_ERR(eudyptulaDevice)){               // Clean up if there is an error
       class_destroy(eudyptulaClass);           // Repeated code but the alternative is goto statements
       unregister_chrdev(majorNumber, DEVICE_NAME);
@@ -79,17 +78,7 @@ static void __exit eudyptula_exit(void){
    printk(KERN_INFO "eudyptula: Goodbye from the LKM!\n");
 }
  
-/** @brief The device open function that is called each time the device is opened
- *  This will only increment the numberOpens counter in this case.
- *  @param inodep A pointer to an inode object (defined in linux/fs.h)
- *  @param filep A pointer to a file object (defined in linux/fs.h)
- */
-static int dev_open(struct inode *inodep, struct file *filep){
-   numberOpens++;
-   printk(KERN_INFO "eudyptula: Device has been opened %d time(s)\n", numberOpens);
-   return 0;
-}
- 
+
 /** @brief This function is called whenever device is being read from user space i.e. data is
  *  being sent from the device to the user. In this case is uses the copy_to_user() function to
  *  send the buffer string to the user and captures any errors.
@@ -127,24 +116,14 @@ static ssize_t dev_write(struct file *filep, const char *buffer, size_t len, lof
    printk(KERN_INFO "eudyptula: Received %zu characters from the user\n", len);
    return len;
 }
- 
-/** @brief The device release function that is called whenever the device is closed/released by
- *  the userspace program
- *  @param inodep A pointer to an inode object (defined in linux/fs.h)
- *  @param filep A pointer to a file object (defined in linux/fs.h)
- */
-static int dev_release(struct inode *inodep, struct file *filep){
-   printk(KERN_INFO "eudyptula: Device successfully closed\n");
-   return 0;
-}
- 
+
 /** @brief A module must use the module_init() module_exit() macros from linux/init.h, which
  *  identify the initialization function at insertion time and the cleanup function (as
  *  listed above)
  */
 
-module_init(eudyptula:_init);
-module_exit(eudyptula:_exit);
+module_init(eudyptula_init);
+module_exit(eudyptula_exit);
 
 MODULE_LICENSE(DRIVER_LICENSE);
 MODULE_AUTHOR(DRIVER_AUTHOR);
