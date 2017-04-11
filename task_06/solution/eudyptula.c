@@ -7,7 +7,6 @@
 #define DRIVER_LICENSE "GPL"
 #define DRIVER_VERSION "0.1" 
 
-
 static struct file_operations simple_driver_fops =
 {
 	.owner = DRIVER_AUTHOR,
