@@ -14,7 +14,7 @@ static struct file_operations simple_driver_fops =
 };
 
 static int device_file_major_number = 0;
-static const char device_name[] = "char-driver";
+static const char device_name[] = "eudyptula";
 
 static int register_device(void)
 {
@@ -49,7 +49,7 @@ static ssize_t device_file_read(
                        , size_t count
                        , loff_t *position)
 {
-    printk( KERN_NOTICE "Seudyptula: Device file is read at offset = %i, read bytes count = %u"
+    printk( KERN_NOTICE "eudyptula: Device file is read at offset = %i, read bytes count = %u"
                 , (int)*position
                 , (unsigned int)count );
     /* If position is behind the end of a file we have nothing to read */

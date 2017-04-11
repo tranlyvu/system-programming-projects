@@ -1,8 +1,8 @@
 TARGET_MODULE:=eudyptula
 # If we are running by kernel building system
 ifneq ($(KERNELRELEASE),)
-	$(TARGET_MODULE)-objs := eudyptula.o
-	obj-m := $(TARGET_MODULE).o
+	$(TARGET_MODULE)-objs := main.o device_file.o
+	obj-m += eudyptula.o
 # If we running without kernel build system
 else
 	BUILDSYSTEM_DIR:=/lib/modules/$(shell uname -r)/build
