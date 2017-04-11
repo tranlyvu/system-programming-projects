@@ -28,7 +28,7 @@ static ssize_t dev_write(struct file *, const char *, size_t, loff_t *);
 
 static struct file_operations fops =
 {
-	.read = device_file_read,
+	.read = dev_read,
     .write = dev_write,
 };
 
