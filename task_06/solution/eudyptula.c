@@ -29,9 +29,9 @@ static const struct file_operations fops = {
 
 static int __init eudyptula_init(void)
 {
-   pr_info("eudyptula: Initializing the eudyptula LKM\n" );
+   pr_info("eudyptula: Initializing the eudyptula LKM\n");
    majorNumber = register_chrdev(0, DEVICE_NAME, &fops);
-   if (majorNumber<0){
+   if (majorNumber < 0) {
       printk(KERN_ALERT "eudyptula failed to register a major number\n");
       return majorNumber;
    }
@@ -53,7 +53,6 @@ static int __init eudyptula_init(void)
    pr_info("eudyptulaChar: device class created correctly\n");
    return 0;
 }
- 
 /** @brief The LKM cleanup function
  *  Similar to the initialization function, it is static. The __exit macro notifies that if this
  *  code is used for a built-in driver (not a LKM) that this function is not required.
@@ -66,8 +65,6 @@ static void __exit eudyptula_exit(void)
    unregister_chrdev(majorNumber, DEVICE_NAME);
    pr_info("eudyptula: Goodbye from the LKM!\n");
 }
- 
-
 /** @brief This function is called whenever device is being read from user space i.e. data is
  *  being sent from the device to the user. In this case is uses the copy_to_user() function to
  *  send the buffer string to the user and captures any errors.
@@ -98,7 +95,7 @@ static ssize_t dev_read(struct file *filep, char *buffer, size_t len, loff_t *of
  */
 static ssize_t dev_write(struct file *filep, const char *buffer, size_t len, loff_t *offset)
 {
-   sprintf(message, "%s(%zu letters)", buffer, len);
+   printf(message, "%s(%zu letters)", buffer, len);
    size_of_message = strlen(message);
    pr_info("eudyptula: Received %zu characters from the user\n", len);
    return len;
