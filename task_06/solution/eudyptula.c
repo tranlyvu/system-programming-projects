@@ -16,23 +16,19 @@
 static int    majorNumber;
 static char   message[256] = {0};
 static short  size_of_message;
-static int    numberOpens = 0;
-static struct class*  eudyptulaClass  = NULL;
-static struct device* eudyptulaDevice = NULL; 
- 
+static int    numberOpens;
+static struct class *eudyptulaClass;
+static struct device *eudyptulaDevice; 
 static ssize_t dev_read(struct file *, char *, size_t, loff_t *);
 static ssize_t dev_write(struct file *, const char *, size_t, loff_t *);
 
-static struct file_operations fops =
-{
+static const struct file_operations fops ={
 	.read = dev_read,
-    .write = dev_write,
+   .write = dev_write,
 };
 
-
-static int __init eudyptula_init(void)
-{       
-    printk(KERN_INFO "eudyptula: Initializing the eudyptula LKM\n" );
+static int __init eudyptula_init(void){       
+   printk(KERN_INFO "eudyptula: Initializing the eudyptula LKM\n" );
    
    majorNumber = register_chrdev(0, DEVICE_NAME, &fops);
    if (majorNumber<0){
