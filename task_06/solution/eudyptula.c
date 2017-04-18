@@ -27,15 +27,15 @@ static const struct file_operations fops ={
    .write = dev_write,
 };
 
-static int __init eudyptula_init(void){       
-   printk(KERN_INFO "eudyptula: Initializing the eudyptula LKM\n" );
+static int __init eudyptula_init(void) {       
+   pr_info("eudyptula: Initializing the eudyptula LKM\n" );
    
    majorNumber = register_chrdev(0, DEVICE_NAME, &fops);
    if (majorNumber<0){
       printk(KERN_ALERT "eudyptula failed to register a major number\n");
       return majorNumber;
    }
-   printk(KERN_INFO "eudyptula: registered correctly with major number %d\n", majorNumber);
+   pr_info("eudyptula: registered correctly with major number %d\n", majorNumber);
  
    eudyptulaClass = class_create(THIS_MODULE, CLASS_NAME);
    if (IS_ERR(eudyptulaClass)){
@@ -43,7 +43,7 @@ static int __init eudyptula_init(void){
       printk(KERN_ALERT "Failed to register device class\n");
       return PTR_ERR(eudyptulaClass);
    }
-   printk(KERN_INFO "eudyptula: device class registered correctly\n");
+   pr_info("eudyptula: device class registered correctly\n");
  
    eudyptulaDevice = device_create(eudyptulaClass, NULL, MKDEV(majorNumber, 0), NULL, DEVICE_NAME);
    if (IS_ERR(eudyptulaDevice)){
@@ -52,7 +52,7 @@ static int __init eudyptula_init(void){
       printk(KERN_ALERT "Failed to create the device\n");
       return PTR_ERR(eudyptulaDevice);
    }
-   printk(KERN_INFO "eudyptulaChar: device class created correctly\n");
+   pr_info("eudyptulaChar: device class created correctly\n");
    return 0;
 }
  
@@ -65,7 +65,7 @@ static void __exit eudyptula_exit(void){
    class_unregister(eudyptulaClass);
    class_destroy(eudyptulaClass);
    unregister_chrdev(majorNumber, DEVICE_NAME);
-   printk(KERN_INFO "eudyptula: Goodbye from the LKM!\n");
+   pr_info("eudyptula: Goodbye from the LKM!\n");
 }
  
 
@@ -77,16 +77,16 @@ static void __exit eudyptula_exit(void){
  *  @param len The length of the b
  *  @param offset The offset if required
  */
-static ssize_t dev_read(struct file *filep, char *buffer, size_t len, loff_t *offset){
+static ssize_t dev_read(struct file *filep, char *buffer, size_t len, loff_t *offset) {
    int error_count = 0;
    error_count = copy_to_user(buffer, message, size_of_message);
  
    if (error_count==0){
-      printk(KERN_INFO "eudyptula: Sent %d characters to the user\n", size_of_message);
+      pr_info("eudyptula: Sent %d characters to the user\n", size_of_message);
       return (size_of_message=0);
    }
    else {
-      printk(KERN_INFO "eudyptula: Failed to send %d characters to the user\n", error_count);
+      pr_info("eudyptula: Failed to send %d characters to the user\n", error_count);
       return -EFAULT;
    }
 }
@@ -99,15 +99,16 @@ static ssize_t dev_read(struct file *filep, char *buffer, size_t len, loff_t *of
  *  @param len The length of the array of data that is being passed in the const char buffer
  *  @param offset The offset if required
  */
-static ssize_t dev_write(struct file *filep, const char *buffer, size_t len, loff_t *offset){
+static ssize_t dev_write(struct file *filep, const char *buffer, size_t len, loff_t *offset) {
    sprintf(message, "%s(%zu letters)", buffer, len);
    size_of_message = strlen(message);
-   printk(KERN_INFO "eudyptula: Received %zu characters from the user\n", len);
+   pr_info("eudyptula: Received %zu characters from the user\n", len);
    return len;
 }
 
-/** @brief A module must use the module_init() module_exit() macros from linux/init.h, which
- *  identify the initialization function at insertion time and the cleanup function (as
+/** @brief A module must use the module_init() module_exit() macros 
+ *  from linux/init.h, which identify the initialization function
+ *  at insertion time and the cleanup function (as
  *  listed above)
  */
 
