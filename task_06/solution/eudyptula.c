@@ -32,23 +32,23 @@ static int __init eudyptula_init(void)
     pr_info("eudyptula: Initializing the eudyptula LKM\n");
     majorNumber = register_chrdev(0, DEVICE_NAME, &fops);
     if (majorNumber < 0) {
-        printk(KERN_ALERT "eudyptula failed to register a major number\n");
-        return majorNumber;
+		printk(KERN_ALERT "eudyptula failed to register a major number\n");
+		return majorNumber;
    }
     pr_info("eudyptula: registered correctly with major number %d\n", majorNumber);
     eudyptulaClass = class_create(THIS_MODULE, CLASS_NAME);
     if (IS_ERR(eudyptulaClass)) {
-        unregister_chrdev(majorNumber, DEVICE_NAME);
-        printk(KERN_ALERT "Failed to register device class\n");
-        return PTR_ERR(eudyptulaClass);
+		unregister_chrdev(majorNumber, DEVICE_NAME);
+		printk(KERN_ALERT "Failed to register device class\n");
+		return PTR_ERR(eudyptulaClass);
    }
    pr_info("eudyptula: device class registered correctly\n");
    eudyptulaDevice = device_create(eudyptulaClass, NULL, MKDEV(majorNumber, 0), NULL, DEVICE_NAME);
    if (IS_ERR(eudyptulaDevice)) {
-        class_destroy(eudyptulaClass);
-        unregister_chrdev(majorNumber, DEVICE_NAME);
-        printk(KERN_ALERT "Failed to create the device\n");
-        return PTR_ERR(eudyptulaDevice);
+		class_destroy(eudyptulaClass);
+		unregister_chrdev(majorNumber, DEVICE_NAME);
+		printk(KERN_ALERT "Failed to create the device\n");
+		return PTR_ERR(eudyptulaDevice);
    }
    pr_info("eudyptulaChar: device class created correctly\n");
    return 0;
@@ -79,15 +79,15 @@ static void __exit eudyptula_exit(void)
  */
 static ssize_t dev_read(struct file *filep, char *buffer, size_t len, loff_t *offset)
 {
-    int error_count = 0;
-    error_count = copy_to_user(buffer, message, size_of_message);
-    if (error_count == 0) {
-        pr_info("eudyptula: Sent %d characters to the user\n", size_of_message);
-        return (size_of_message = 0);
-    } else {
-        pr_info("eudyptula: Failed to send %d characters to the user\n", error_count);
-        return -EFAULT;
-    }
+	int error_count = 0;
+	error_count = copy_to_user(buffer, message, size_of_message);
+	if (error_count == 0) {
+		pr_info("eudyptula: Sent %d characters to the user\n", size_of_message);
+		return (size_of_message = 0);
+	} else {
+		pr_info("eudyptula: Failed to send %d characters to the user\n", error_count);
+		return -EFAULT;
+	}
 }
 /** @brief This function is called whenever
  *  the device is being written to from user space i.e.
@@ -102,10 +102,10 @@ static ssize_t dev_read(struct file *filep, char *buffer, size_t len, loff_t *of
  */
 static ssize_t dev_write(struct file *filep, const char *buffer, size_t len, loff_t *offset)
 {
-    printf(message, "%s(%zu letters)", buffer, len);
-    size_of_message = strlen(message);
-    pr_info("eudyptula: Received %zu characters from the user\n", len);
-    return len;
+	printf(message, "%s(%zu letters)", buffer, len);
+	size_of_message = strlen(message);
+	pr_info("eudyptula: Received %zu characters from the user\n", len);
+	return len;
 }
 
 module_init(eudyptula_init);
