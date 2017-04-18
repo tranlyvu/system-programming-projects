@@ -54,8 +54,10 @@ static int __init eudyptula_init(void)
    return 0;
 }
 /** @brief The LKM cleanup function
- *  Similar to the initialization function, it is static. The __exit macro notifies that if this
- *  code is used for a built-in driver (not a LKM) that this function is not required.
+ *  Similar to the initialization function, it is static. 
+ *  The __exit macro notifies that if this
+ *  code is used for a built-in driver (not a LKM) 
+ *   that this function is not required.
  */
 static void __exit eudyptula_exit(void)
 {
@@ -65,8 +67,10 @@ static void __exit eudyptula_exit(void)
    unregister_chrdev(majorNumber, DEVICE_NAME);
    pr_info("eudyptula: Goodbye from the LKM!\n");
 }
-/** @brief This function is called whenever device is being read from user space i.e. data is
- *  being sent from the device to the user. In this case is uses the copy_to_user() function to
+/** @brief This function is called whenever device is 
+ *  being read from user space i.e. data is
+ *  being sent from the device to the user. 
+ *  In this case is uses the copy_to_user() function to
  *  send the buffer string to the user and captures any errors.
  *  @param filep A pointer to a file object (defined in linux/fs.h)
  *  @param buffer The pointer to the buffer to which this function writes the data
@@ -85,12 +89,15 @@ static ssize_t dev_read(struct file *filep, char *buffer, size_t len, loff_t *of
       return -EFAULT;
    }
 }
-/** @brief This function is called whenever the device is being written to from user space i.e.
- *  data is sent to the device from the user. The data is copied to the message[] array in this
+/** @brief This function is called whenever 
+ *  the device is being written to from user space i.e.
+ *  data is sent to the device from the user. 
+ *  The data is copied to the message[] array in this
  *  LKM using the sprintf() function along with the length of the string.
  *  @param filep A pointer to a file object
  *  @param buffer The buffer to that contains the string to write to the device
- *  @param len The length of the array of data that is being passed in the const char buffer
+ *  @param len The length of the array of data that is being 
+ *  passed in the const char buffer
  *  @param offset The offset if required
  */
 static ssize_t dev_write(struct file *filep, const char *buffer, size_t len, loff_t *offset)
@@ -100,7 +107,6 @@ static ssize_t dev_write(struct file *filep, const char *buffer, size_t len, lof
    pr_info("eudyptula: Received %zu characters from the user\n", len);
    return len;
 }
-
 
 module_init(eudyptula_init);
 module_exit(eudyptula_exit);
