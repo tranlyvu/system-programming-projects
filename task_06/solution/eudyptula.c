@@ -1,9 +1,9 @@
-#include <linux/init.h>           
-#include <linux/module.h>        
-#include <linux/device.h>         
-#include <linux/kernel.h>       
-#include <linux/fs.h>             
-#include <asm/uaccess.h>          
+#include <linux/init.h>
+#include <linux/module.h>
+#include <linux/device.h>
+#include <linux/kernel.h>
+#include <linux/fs.h>
+#include <asm/uaccess.h>
 
 #define CLASS_NAME "eudyptula"
 #define DEVICE_NAME "eudyptula"
@@ -11,18 +11,15 @@
 #define DRIVER_AUTHOR "Tran Ly Vu <vutransingapore@gmail.com>"
 #define DRIVER_DESC "A simple Linux char driver"
 #define DRIVER_LICENSE "GPL"
-#define DRIVER_VERSION "0.1" 
+#define DRIVER_VERSION "0.1"
 
-static int    majorNumber;                  ///< Stores the device number -- determined automatically
-static char   message[256] = {0};           ///< Memory for the string that is passed from userspace
-static short  size_of_message;              ///< Used to remember the size of the string stored
-static int    numberOpens = 0;              ///< Counts the number of times the device is opened
-static struct class*  eudyptulaClass  = NULL; ///< The device-driver class struct pointer
-static struct device* eudyptulaDevice = NULL; ///< The device-driver device struct pointer
+static int    majorNumber;
+static char   message[256] = {0};
+static short  size_of_message;
+static int    numberOpens = 0;
+static struct class*  eudyptulaClass  = NULL;
+static struct device* eudyptulaDevice = NULL; 
  
-// The prototype functions for the character driver -- must come before the struct definition
-static int     dev_open(struct inode *, struct file *);
-static int     dev_release(struct inode *, struct file *);
 static ssize_t dev_read(struct file *, char *, size_t, loff_t *);
 static ssize_t dev_write(struct file *, const char *, size_t, loff_t *);
 
@@ -37,7 +34,6 @@ static int __init eudyptula_init(void)
 {       
     printk(KERN_INFO "eudyptula: Initializing the eudyptula LKM\n" );
    
-   // Try to dynamically allocate a major number for the device -- more difficult but worth it
    majorNumber = register_chrdev(0, DEVICE_NAME, &fops);
    if (majorNumber<0){
       printk(KERN_ALERT "eudyptula failed to register a major number\n");
@@ -45,24 +41,22 @@ static int __init eudyptula_init(void)
    }
    printk(KERN_INFO "eudyptula: registered correctly with major number %d\n", majorNumber);
  
-   // Register the device class
    eudyptulaClass = class_create(THIS_MODULE, CLASS_NAME);
-   if (IS_ERR(eudyptulaClass)){                // Check for error and clean up if there is
+   if (IS_ERR(eudyptulaClass)){
       unregister_chrdev(majorNumber, DEVICE_NAME);
       printk(KERN_ALERT "Failed to register device class\n");
-      return PTR_ERR(eudyptulaClass);          // Correct way to return an error on a pointer
+      return PTR_ERR(eudyptulaClass);
    }
    printk(KERN_INFO "eudyptula: device class registered correctly\n");
  
-   // Register the device driver
    eudyptulaDevice = device_create(eudyptulaClass, NULL, MKDEV(majorNumber, 0), NULL, DEVICE_NAME);
-   if (IS_ERR(eudyptulaDevice)){               // Clean up if there is an error
-      class_destroy(eudyptulaClass);           // Repeated code but the alternative is goto statements
+   if (IS_ERR(eudyptulaDevice)){
+      class_destroy(eudyptulaClass);
       unregister_chrdev(majorNumber, DEVICE_NAME);
       printk(KERN_ALERT "Failed to create the device\n");
       return PTR_ERR(eudyptulaDevice);
    }
-   printk(KERN_INFO "eudyptulaChar: device class created correctly\n"); // Made it! device was initialized
+   printk(KERN_INFO "eudyptulaChar: device class created correctly\n");
    return 0;
 }
  
@@ -71,10 +65,10 @@ static int __init eudyptula_init(void)
  *  code is used for a built-in driver (not a LKM) that this function is not required.
  */
 static void __exit eudyptula_exit(void){
-   device_destroy(eudyptulaClass, MKDEV(majorNumber, 0));     // remove the device
-   class_unregister(eudyptulaClass);                          // unregister the device class
-   class_destroy(eudyptulaClass);                             // remove the device class
-   unregister_chrdev(majorNumber, DEVICE_NAME);             // unregister the major number
+   device_destroy(eudyptulaClass, MKDEV(majorNumber, 0));
+   class_unregister(eudyptulaClass);
+   class_destroy(eudyptulaClass);
+   unregister_chrdev(majorNumber, DEVICE_NAME);
    printk(KERN_INFO "eudyptula: Goodbye from the LKM!\n");
 }
  
@@ -89,16 +83,15 @@ static void __exit eudyptula_exit(void){
  */
 static ssize_t dev_read(struct file *filep, char *buffer, size_t len, loff_t *offset){
    int error_count = 0;
-   // copy_to_user has the format ( * to, *from, size) and returns 0 on success
    error_count = copy_to_user(buffer, message, size_of_message);
  
-   if (error_count==0){            // if true then have success
+   if (error_count==0){
       printk(KERN_INFO "eudyptula: Sent %d characters to the user\n", size_of_message);
-      return (size_of_message=0);  // clear the position to the start and return 0
+      return (size_of_message=0);
    }
    else {
       printk(KERN_INFO "eudyptula: Failed to send %d characters to the user\n", error_count);
-      return -EFAULT;              // Failed -- return a bad address message (i.e. -14)
+      return -EFAULT;
    }
 }
  
@@ -111,8 +104,8 @@ static ssize_t dev_read(struct file *filep, char *buffer, size_t len, loff_t *of
  *  @param offset The offset if required
  */
 static ssize_t dev_write(struct file *filep, const char *buffer, size_t len, loff_t *offset){
-   sprintf(message, "%s(%zu letters)", buffer, len);   // appending received string with its length
-   size_of_message = strlen(message);                 // store the length of the stored message
+   sprintf(message, "%s(%zu letters)", buffer, len);
+   size_of_message = strlen(message);
    printk(KERN_INFO "eudyptula: Received %zu characters from the user\n", len);
    return len;
 }
