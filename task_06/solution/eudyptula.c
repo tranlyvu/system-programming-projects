@@ -89,9 +89,9 @@ static ssize_t dev_read(struct file *filep, char *buffer, size_t len, loff_t *of
         return -EFAULT;
     }
 }
-/** @brief This function is called whenever 
+/** @brief This function is called whenever
  *  the device is being written to from user space i.e.
- *  data is sent to the device from the user. 
+ *  data is sent to the device from the user.
  *  The data is copied to the message[] array in this
  *  LKM using the sprintf() function along with the length of the string.
  *  @param filep A pointer to a file object
