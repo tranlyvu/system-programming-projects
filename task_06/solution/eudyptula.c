@@ -18,16 +18,17 @@ static char   message[256] = {0};
 static short  size_of_message;
 static int    numberOpens;
 static struct class *eudyptulaClass;
-static struct device *eudyptulaDevice; 
+static struct device *eudyptulaDevice;
 static ssize_t dev_read(struct file *, char *, size_t, loff_t *);
 static ssize_t dev_write(struct file *, const char *, size_t, loff_t *);
 
-static const struct file_operations fops ={
+static const struct file_operations fops = {
 	.read = dev_read,
    .write = dev_write,
 };
 
-static int __init eudyptula_init(void) {       
+static int __init eudyptula_init(void)
+{
    pr_info("eudyptula: Initializing the eudyptula LKM\n" );
    
    majorNumber = register_chrdev(0, DEVICE_NAME, &fops);
@@ -60,7 +61,8 @@ static int __init eudyptula_init(void) {
  *  Similar to the initialization function, it is static. The __exit macro notifies that if this
  *  code is used for a built-in driver (not a LKM) that this function is not required.
  */
-static void __exit eudyptula_exit(void){
+static void __exit eudyptula_exit(void)
+{
    device_destroy(eudyptulaClass, MKDEV(majorNumber, 0));
    class_unregister(eudyptulaClass);
    class_destroy(eudyptulaClass);
@@ -77,7 +79,8 @@ static void __exit eudyptula_exit(void){
  *  @param len The length of the b
  *  @param offset The offset if required
  */
-static ssize_t dev_read(struct file *filep, char *buffer, size_t len, loff_t *offset) {
+static ssize_t dev_read(struct file *filep, char *buffer, size_t len, loff_t *offset)
+{
    int error_count = 0;
    error_count = copy_to_user(buffer, message, size_of_message);
  
@@ -99,22 +102,18 @@ static ssize_t dev_read(struct file *filep, char *buffer, size_t len, loff_t *of
  *  @param len The length of the array of data that is being passed in the const char buffer
  *  @param offset The offset if required
  */
-static ssize_t dev_write(struct file *filep, const char *buffer, size_t len, loff_t *offset) {
+static ssize_t dev_write(struct file *filep, 
+                        const char *buffer, size_t len, loff_t *offset)
+{
    sprintf(message, "%s(%zu letters)", buffer, len);
    size_of_message = strlen(message);
    pr_info("eudyptula: Received %zu characters from the user\n", len);
    return len;
 }
 
-/** @brief A module must use the module_init() module_exit() macros 
- *  from linux/init.h, which identify the initialization function
- *  at insertion time and the cleanup function (as
- *  listed above)
- */
 
 module_init(eudyptula_init);
 module_exit(eudyptula_exit);
-
 MODULE_LICENSE(DRIVER_LICENSE);
 MODULE_AUTHOR(DRIVER_AUTHOR);
 MODULE_DESCRIPTION(DRIVER_DESC);
