@@ -23,35 +23,35 @@ static ssize_t dev_read(struct file *, char *, size_t, loff_t *);
 static ssize_t dev_write(struct file *, const char *, size_t, loff_t *);
 
 static const struct file_operations fops = {
-    .read = dev_read,
-    .write = dev_write,
+        .read = dev_read,
+        .write = dev_write,
 };
 
 static int __init eudyptula_init(void)
 {
-    pr_info("eudyptula: Initializing the eudyptula LKM\n");
-    majorNumber = register_chrdev(0, DEVICE_NAME, &fops);
-    if (majorNumber < 0) {
-		printk(KERN_ALERT "eudyptula failed to register a major number\n");
-		return majorNumber;
-   }
-    pr_info("eudyptula: registered correctly with major number %d\n", majorNumber);
-    eudyptulaClass = class_create(THIS_MODULE, CLASS_NAME);
-    if (IS_ERR(eudyptulaClass)) {
-		unregister_chrdev(majorNumber, DEVICE_NAME);
+        pr_info("eudyptula: Initializing the eudyptula LKM\n");
+        majorNumber = register_chrdev(0, DEVICE_NAME, &fops);
+        if (majorNumber < 0) {
+                printk(KERN_ALERT "eudyptula failed to register a major number\n");
+                return majorNumber;
+        }
+        pr_info("eudyptula: registered correctly with major number %d\n", majorNumber);
+        eudyptulaClass = class_create(THIS_MODULE, CLASS_NAME);
+        if (IS_ERR(eudyptulaClass)) {
+                unregister_chrdev(majorNumber, DEVICE_NAME);
 		printk(KERN_ALERT "Failed to register device class\n");
 		return PTR_ERR(eudyptulaClass);
-   }
-   pr_info("eudyptula: device class registered correctly\n");
-   eudyptulaDevice = device_create(eudyptulaClass, NULL, MKDEV(majorNumber, 0), NULL, DEVICE_NAME);
-   if (IS_ERR(eudyptulaDevice)) {
+        }
+        pr_info("eudyptula: device class registered correctly\n");
+        eudyptulaDevice = device_create(eudyptulaClass, NULL, MKDEV(majorNumber, 0), NULL, DEVICE_NAME);
+        if (IS_ERR(eudyptulaDevice)) {
 		class_destroy(eudyptulaClass);
 		unregister_chrdev(majorNumber, DEVICE_NAME);
 		printk(KERN_ALERT "Failed to create the device\n");
 		return PTR_ERR(eudyptulaDevice);
-   }
-   pr_info("eudyptulaChar: device class created correctly\n");
-   return 0;
+        }
+        pr_info("eudyptulaChar: device class created correctly\n");
+        return 0;
 }
 /** @brief The LKM cleanup function
  *  Similar to the initialization function, it is static.
@@ -61,11 +61,11 @@ static int __init eudyptula_init(void)
  */
 static void __exit eudyptula_exit(void)
 {
-    device_destroy(eudyptulaClass, MKDEV(majorNumber, 0));
-    class_unregister(eudyptulaClass);
-    class_destroy(eudyptulaClass);
-    unregister_chrdev(majorNumber, DEVICE_NAME);
-    pr_info("eudyptula: Goodbye from the LKM!\n");
+        device_destroy(eudyptulaClass, MKDEV(majorNumber, 0));
+        class_unregister(eudyptulaClass);
+        class_destroy(eudyptulaClass);
+        unregister_chrdev(majorNumber, DEVICE_NAME);
+        pr_info("eudyptula: Goodbye from the LKM!\n");
 }
 /** @brief This function is called whenever device is
  *  being read from user space i.e. data is
