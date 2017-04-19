@@ -7,11 +7,12 @@
 
 #define CLASS_NAME "eudyptula"
 #define DEVICE_NAME "eudyptula"
-
+#define MY_ID "f4173b67ddf8"
 #define DRIVER_AUTHOR "Tran Ly Vu <vutransingapore@gmail.com>"
 #define DRIVER_DESC "A simple Linux char driver"
 #define DRIVER_LICENSE "GPL"
 #define DRIVER_VERSION "0.1"
+
 
 static int    majorNumber;
 static char   message[256] = {0};
@@ -67,45 +68,26 @@ static void __exit eudyptula_exit(void)
         unregister_chrdev(majorNumber, DEVICE_NAME);
         pr_info("eudyptula: Goodbye from the LKM!\n");
 }
-/** @brief This function is called whenever device is
- *  being read from user space i.e. data is
- *  being sent from the device to the user.
- *  In this case is uses the copy_to_user() function to
- *  send the buffer string to the user and captures any errors.
- *  @param filep A pointer to a file object (defined in linux/fs.h)
- *  @param buffer The pointer to the buffer to which this function writes the data
- *  @param len The length of the b
- *  @param offset The offset if required
- */
+
 static ssize_t dev_read(struct file *filep, char *buffer, size_t len, loff_t *offset)
 {
-	int error_count = 0;
-	error_count = copy_to_user(buffer, message, size_of_message);
+	int error_count = copy_to_user(buffer, message, size_of_message);
 	if (error_count == 0) {
-		pr_info("eudyptula: Sent %d characters to the user\n", size_of_message);
+		pr_info(MY_ID);
 		return (size_of_message = 0);
 	} else {
-		pr_info("eudyptula: Failed to send %d characters to the user\n", error_count);
-		return -EFAULT;
+		return -EINVAL;
 	}
 }
-/** @brief This function is called whenever
- *  the device is being written to from user space i.e.
- *  data is sent to the device from the user.
- *  The data is copied to the message[] array in this
- *  LKM using the sprintf() function along with the length of the string.
- *  @param filep A pointer to a file object
- *  @param buffer The buffer to that contains the string to write to the device
- *  @param len The length of the array of data that is being
- *  passed in the const char buffer
- *  @param offset The offset if required
- */
+
 static ssize_t dev_write(struct file *filep, const char *buffer, size_t len, loff_t *offset)
 {
-	printf(message, "%s(%zu letters)", buffer, len);
-	size_of_message = strlen(message);
-	pr_info("eudyptula: Received %zu characters from the user\n", len);
-	return len;
+	size_of_message = strlen(MY_ID);
+        if (!strcmp(message, MY_ID)) {
+return len;             
+        } else {
+                return -EINVAL;
+        }	
 }
 
 module_init(eudyptula_init);
