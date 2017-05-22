@@ -28,45 +28,24 @@ static const struct file_operations fops = {
         .write = dev_write,
 };
 
+static struct miscdevice hello_dev = {
+        MISC_DYNAMIC_MINOR,
+        "eudyptula",
+        &hello_fops
+};
+
 static int __init eudyptula_init(void)
 {
-        pr_info("eudyptula: Initializing the eudyptula LKM\n");
-        majorNumber = register_chrdev(0, DEVICE_NAME, &fops);
-        if (majorNumber < 0) {
-                printk(KERN_ALERT "eudyptula failed to register a major number\n");
-                return majorNumber;
-        }
-        pr_info("eudyptula: registered correctly with major number %d\n", majorNumber);
-        eudyptulaClass = class_create(THIS_MODULE, CLASS_NAME);
-        if (IS_ERR(eudyptulaClass)) {
-                unregister_chrdev(majorNumber, DEVICE_NAME);
-		printk(KERN_ALERT "Failed to register device class\n");
-		return PTR_ERR(eudyptulaClass);
-        }
-        pr_info("eudyptula: device class registered correctly\n");
-        eudyptulaDevice = device_create(eudyptulaClass, NULL, MKDEV(majorNumber, 0), NULL, DEVICE_NAME);
-        if (IS_ERR(eudyptulaDevice)) {
-		class_destroy(eudyptulaClass);
-		unregister_chrdev(majorNumber, DEVICE_NAME);
-		printk(KERN_ALERT "Failed to create the device\n");
-		return PTR_ERR(eudyptulaDevice);
-        }
-        pr_info("eudyptulaChar: device class created correctly\n");
-        return 0;
+        int ret;
+
+        ret = misc_register(&hello_dev);
+
+        return ret;
 }
-/** @brief The LKM cleanup function
- *  Similar to the initialization function, it is static.
- *  The __exit macro notifies that if this
- *  code is used for a built-in driver (not a LKM)
- *   that this function is not required.
- */
+
 static void __exit eudyptula_exit(void)
 {
-        device_destroy(eudyptulaClass, MKDEV(majorNumber, 0));
-        class_unregister(eudyptulaClass);
-        class_destroy(eudyptulaClass);
-        unregister_chrdev(majorNumber, DEVICE_NAME);
-        pr_info("eudyptula: Goodbye from the LKM!\n");
+        misc_deregister(&hello_dev);
 }
 
 static ssize_t dev_read(struct file *filep, char *buffer, size_t len, loff_t *offset)
