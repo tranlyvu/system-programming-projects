@@ -1,3 +1,4 @@
+CONFIG_MODULE_SIG=n
 obj-m := eudyptula.o
 
 KERNELDIR ?= /lib/modules/$(shell uname -r)/build

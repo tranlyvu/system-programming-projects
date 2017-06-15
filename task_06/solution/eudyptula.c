@@ -1,77 +1,63 @@
 #include <linux/init.h>
-#include <linux/module.h>
-#include <linux/device.h>
-#include <linux/kernel.h>
 #include <linux/fs.h>
-#include <asm/uaccess.h>
+#include <linux/miscdevice.h>
+#include <linux/uaccess.h>
+#include <linux/module.h>
 
-#define CLASS_NAME "eudyptula"
 #define DEVICE_NAME "eudyptula"
 #define MY_ID "f4173b67ddf8"
+#define MY_ID_LENG 13 /*include the final NULL*/
 #define DRIVER_AUTHOR "Tran Ly Vu <vutransingapore@gmail.com>"
-#define DRIVER_DESC "A simple Linux char driver"
-#define DRIVER_LICENSE "GPL"
-#define DRIVER_VERSION "0.1"
+#define DRIVER_DESC "A simple msc char device driver written by Tran Ly Vu"
 
+static struct miscdevice my_dev;
 
-static int    majorNumber;
-static char   message[256] = {0};
-static short  size_of_message;
-static int    numberOpens;
-static struct class *eudyptulaClass;
-static struct device *eudyptulaDevice;
-static ssize_t dev_read(struct file *, char *, size_t, loff_t *);
-static ssize_t dev_write(struct file *, const char *, size_t, loff_t *);
+static ssize_t device_read(struct file *filep, char __user *buffer, size_t len, loff_t *offset)
+{
+	char *my_str = MY_ID;
+
+	if (*offset != 0) return 0;
+
+	if ((len < MY_ID_LENG) || (copy_to_user(buffer, my_str, MY_ID_LENG) != 0))
+		return -EINVAL;
+	*offset += len;
+	return len;
+}
+
+static ssize_t device_write(struct file *filep, const char __user *buffer, size_t len, loff_t *offset)
+{
+	char *my_str = MY_ID;
+	char input[MY_ID_LENG];
+	int error_count = copy_from_user(input, buffer, MY_ID_LENG);
+	if ((len != MY_ID_LENG) || error_count != 0 || (!strcmp(my_str, input)))
+                return -EINVAL;
+	else
+		return len;
+}
 
 static const struct file_operations fops = {
-        .read = dev_read,
-        .write = dev_write,
-};
-
-static struct miscdevice hello_dev = {
-        MISC_DYNAMIC_MINOR,
-        "eudyptula",
-        &hello_fops
+        .read = device_read,
+        .write = device_write
 };
 
 static int __init eudyptula_init(void)
 {
-        int ret;
-
-        ret = misc_register(&hello_dev);
-
-        return ret;
+        int retval;
+        my_dev.minor = MISC_DYNAMIC_MINOR;
+        my_dev.name = DEVICE_NAME;
+        my_dev.fops = &fops;
+        retval = misc_register(&my_dev);
+        if (retval) return retval;
+        return 0;
 }
 
 static void __exit eudyptula_exit(void)
 {
-        misc_deregister(&hello_dev);
-}
-
-static ssize_t dev_read(struct file *filep, char *buffer, size_t len, loff_t *offset)
-{
-	int error_count = copy_to_user(buffer, message, size_of_message);
-	if (error_count == 0) {
-		pr_info(MY_ID);
-		return (size_of_message = 0);
-	} else {
-		return -EINVAL;
-	}
-}
-
-static ssize_t dev_write(struct file *filep, const char *buffer, size_t len, loff_t *offset)
-{
-	size_of_message = strlen(MY_ID);
-        if (!strcmp(message, MY_ID)) {
-return len;             
-        } else {
-                return -EINVAL;
-        }	
+        misc_deregister(&my_dev);
 }
 
 module_init(eudyptula_init);
 module_exit(eudyptula_exit);
-MODULE_LICENSE(DRIVER_LICENSE);
 MODULE_AUTHOR(DRIVER_AUTHOR);
 MODULE_DESCRIPTION(DRIVER_DESC);
-MODULE_VERSION(DRIVER_VERSION);
+
