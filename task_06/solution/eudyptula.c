@@ -22,10 +22,12 @@ static ssize_t device_read(struct file *filep,
 	if (*offset != 0)
 		return 0;
 
+	int number_of_byted_not_copied = copy_to_user(buffer, my_str, MY_ID_LENG);
+
 	if ((len < MY_ID_LENG) ||
-		(copy_to_user(buffer, my_str, MY_ID_LENG) != 0))
+		(number_of_byted_not_copied == 0))
 		return -EINVAL;
-	*offset += len;
+
 	return len;
 }
 
