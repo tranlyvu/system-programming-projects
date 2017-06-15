@@ -12,48 +12,62 @@
 
 static struct miscdevice my_dev;
 
-static ssize_t device_read(struct file *filep, char __user *buffer, size_t len, loff_t *offset)
+static ssize_t device_read(struct file *filep,
+			char __user *buffer,
+			size_t len,
+			loff_t *offset)
 {
 	char *my_str = MY_ID;
 
-	if (*offset != 0) return 0;
+	if (*offset != 0)
+		return 0;
 
-	if ((len < MY_ID_LENG) || (copy_to_user(buffer, my_str, MY_ID_LENG) != 0))
+	if ((len < MY_ID_LENG) ||
+		(copy_to_user(buffer, my_str, MY_ID_LENG) != 0))
 		return -EINVAL;
 	*offset += len;
 	return len;
 }
 
-static ssize_t device_write(struct file *filep, const char __user *buffer, size_t len, loff_t *offset)
+static ssize_t device_write(struct file *filep,
+			const char __user *buffer,
+			size_t len,
+			loff_t *offset)
 {
 	char *my_str = MY_ID;
+
 	char input[MY_ID_LENG];
+
 	int error_count = copy_from_user(input, buffer, MY_ID_LENG);
+
 	if ((len != MY_ID_LENG) || error_count != 0 || (!strcmp(my_str, input)))
-                return -EINVAL;
+		return -EINVAL;
 	else
 		return len;
 }
 
 static const struct file_operations fops = {
-        .read = device_read,
-        .write = device_write
+	.read = device_read,
+	.write = device_write
 };
 
 static int __init eudyptula_init(void)
 {
-        int retval;
-        my_dev.minor = MISC_DYNAMIC_MINOR;
-        my_dev.name = DEVICE_NAME;
-        my_dev.fops = &fops;
-        retval = misc_register(&my_dev);
-        if (retval) return retval;
-        return 0;
+	int retval;
+
+	my_dev.minor = MISC_DYNAMIC_MINOR;
+
+	my_dev.name = DEVICE_NAME;
+	my_dev.fops = &fops;
+	retval = misc_register(&my_dev);
+	if (retval)
+		return retval;
+	return 0;
 }
 
 static void __exit eudyptula_exit(void)
 {
-        misc_deregister(&my_dev);
+	misc_deregister(&my_dev);
 }
 
 module_init(eudyptula_init);
