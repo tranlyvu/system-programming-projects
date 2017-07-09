@@ -17,18 +17,7 @@ static ssize_t device_read(struct file *filep,
 			size_t len,
 			loff_t *offset)
 {
-	char *my_str = MY_ID;
-
-	if (*offset != 0)
-		return 0;
-
-	int number_of_byted_not_copied = copy_to_user(buffer, my_str, MY_ID_LENG);
-
-	if ((len < MY_ID_LENG) ||
-		(number_of_byted_not_copied == 0))
-		return -EINVAL;
-
-	return len;
+	return simple_read_from_buffer(buffer, len, offset, MY_ID, MY_ID_LENG);
 }
 
 static ssize_t device_write(struct file *filep,
