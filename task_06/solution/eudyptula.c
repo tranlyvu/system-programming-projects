@@ -27,10 +27,11 @@ static ssize_t device_write(struct file *filep,
 {
 
 	char input[MY_ID_LENG];
+	char *my_str = MY_ID;
 
 	int error_count = copy_from_user(input, buffer, MY_ID_LENG);
 
-	if ((len != MY_ID_LENG) || error_count != 0 || (!strcmp(my_str, input)))
+	if ((len != MY_ID_LENG) || error_count != 0 || (!strncmp(my_str, input, MY_ID_LENG -1)))
 		return -EINVAL;
 	else
 		return simple_write_to_buffer(buffer, len, offset, MY_ID, MY_ID_LENG);
