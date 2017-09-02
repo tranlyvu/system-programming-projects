@@ -25,14 +25,14 @@ static ssize_t device_write(struct file *filep,
 			size_t len,
 			loff_t *offset)
 {
-
 	char input[MY_ID_LENG];
 	char *my_str = MY_ID;
+	ssize_t len = simple_write_to_buffer(input, len, offset, MY_ID, MY_ID_LENG);
 
-	if ((len != MY_ID_LENG) || (!strncmp(my_str, input, MY_ID_LENG -1)))
-		return -EINVAL;
+	if (strncmp(my_str, input, MY_ID_LENG -1))
+		return len;
 	else
-		return simple_write_to_buffer(buffer, len, offset, MY_ID, MY_ID_LENG);
+		return -EINVAL;
 }
 
 static const struct file_operations fops = {
