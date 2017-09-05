@@ -22,17 +22,13 @@ static ssize_t device_read(struct file *filep,
 
 static ssize_t device_write(struct file *filep,
 			const char __user *buffer,
-			size_t len,
+			size_t count,
 			loff_t *offset)
 {
 	char input[MY_ID_LENG];
 	char *my_str = MY_ID;
-	ssize_t len = simple_write_to_buffer(input, len, offset, MY_ID, MY_ID_LENG);
-
-	if (strncmp(my_str, input, MY_ID_LENG -1))
-		return len;
-	else
-		return -EINVAL;
+	ssize_t len = simple_write_to_buffer(input, count, offset, MY_ID, MY_ID_LENG);
+	return len;
 }
 
 static const struct file_operations fops = {
