@@ -9,6 +9,7 @@
 #define MY_ID_LENG 13 /*include the final NULL*/
 #define DRIVER_AUTHOR "Tran Ly Vu <vutransingapore@gmail.com>"
 #define DRIVER_DESC "A simple msc char device driver written by Tran Ly Vu"
+#define	DRIVER_LICENSE "GPL"
 
 static struct miscdevice my_dev;
 
@@ -26,7 +27,6 @@ static ssize_t device_write(struct file *filep,
 			loff_t *offset)
 {
 	char input[MY_ID_LENG];
-	char *my_str = MY_ID;
 	ssize_t len = simple_write_to_buffer(input, count, offset, MY_ID, MY_ID_LENG);
 	return len;
 }
@@ -59,4 +59,4 @@ module_init(eudyptula_init);
 module_exit(eudyptula_exit);
 MODULE_AUTHOR(DRIVER_AUTHOR);
 MODULE_DESCRIPTION(DRIVER_DESC);
-
+MODULE_LICENSE(DRIVER_LICENSE);
