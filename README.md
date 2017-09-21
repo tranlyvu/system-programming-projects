@@ -1,5 +1,5 @@
 # Description
-The repo contains answers for The Eudyptula Chanllenge
+The repo contains answers for The Eudyptula Challenge
 
 # List of taks:
 *  [Task 1](https://github.com/tranlyvu/the-eudyptula-challenge/tree/master/task_01)
