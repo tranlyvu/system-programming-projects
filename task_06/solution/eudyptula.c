@@ -3,6 +3,7 @@
 #include <linux/miscdevice.h>
 #include <linux/uaccess.h>
 #include <linux/module.h>
+#include <string.h>
 
 #define DEVICE_NAME "eudyptula"
 #define MY_ID "f4173b67ddf8"
@@ -24,11 +25,14 @@ static ssize_t device_read(struct file *filep,
 static ssize_t device_write(struct file *filep,
 			const char __user *buffer,
 			size_t count,
-			loff_t *offset)
+			loff_t *ppos)
 {
 	char input[MY_ID_LENG];
-	ssize_t len = simple_write_to_buffer(input, count, offset, MY_ID, MY_ID_LENG);
-	return len;
+	ssize_t result = simple_write_to_buffer(input, count, ppos, buffer, count);
+	if (strncmp(input, MY_ID, MY_ID_LENGTH) != 0)
+		return -EINVAL;
+	else
+		return len;
 }
 
 static const struct file_operations fops = {
