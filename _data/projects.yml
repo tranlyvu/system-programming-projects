@@ -1,9 +1,21 @@
 # Project template
-- layout: top-middle
-  name: Project name
-  link: Link to project (eg. sproogen.github.io/modern-resume-theme)(optional)
-  github: Github page for project (eg. sproogen/modern-resume-theme)(optional)
+- layout: left
+  name: Building Fault-Tolerant Key-Value Store
+  link: github.com/tranlyvu/Fault-Tolerant-Key-Value-Store
+  github: github.com/tranlyvu/Fault-Tolerant-Key-Value-Store
   quote: >
-    Short overview of the project (optional)
+    Built a fault-tolerant key-value store that supports CRUD operations (Create, Read, Update, Delete).
+
   description: | # this will include new lines to allow paragraphs
-    Description about the work on/with the project
+    - Replicated each key on 3 consecutive nodes with both read and write quorum number of 2 to improve fault tolerance.
+    - Implemented stabilization protocol on load-balancing consistent hashing ring to recreate 3 replicas after failure.
+    - Implemented membership protocol for failure detection in distributed systems running on an emulated P2P network that satisfied Completeness (each failure is detected) and Eventual Accuracy (there is no mistaken detection) in the lossy network with all-to-all heartbeat mechanism - each process periodically sends out heartbeats to all the other processes.
+
+- layout: left
+  name: Wikilink
+  link: pypi.org/project/wikilink
+  github: https://github.com/tranlyvu/wiki-link
+  quote: >
+    A multiprocessing scraping application
+  description: | # this will include new lines to allow paragraphs
+    - Extracted and processed data from Wikipedia pages and finds the minimum number of links between 2 given wiki pages using the Breadth-first search algorithm.

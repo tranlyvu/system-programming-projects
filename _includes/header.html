@@ -121,6 +121,11 @@
           {{ site.website_title | default: "Web" }}: {% include a.html href=site.website %}{{ site.website | escape }}</a>
         </p>
       {%- endif -%}
+      {%- if site.resume -%}
+        <p>
+          {{ site.resume_title | default: "Resume" }}: {% include a.html href=site.resume %}{{ site.resume | escape }}</a>
+        </p>
+      {%- endif -%}
     </div>
   </div>
 </div>

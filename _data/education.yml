@@ -1,9 +1,20 @@
 # Education Template
 - layout: left
-  name: Institution name
-  dates: Date Range (eg. 2016 - 2019)
-  qualification: Qualifications (eg. BA Performing Arts)
+  name: National University of Singapore
+  dates: August 2010 - June 2014
+  qualification: B.Sc. in Applied Mathematics and Applied Probability/Statistics
   quote: >
-    Short institution or course description (optional)
+    Founded in 1905 as the Straits Settlements and Federated Malay States Government Medical School, NUS is the oldest higher education institution in Singapore. It is consistently ranked within the top 100 universities in the world and the top 3 universities in the Asia-Pacific.
+  #description: | # this will include new lines to allow paragraphs
+  #  Description of qualification
+
+- layout: left
+  name: Cloud Computing Specialization
+  dates: October 2017 - December 2018  
+  qualification: 
+  quote: >
+    University of Illinois at Urbana-Champaign (via coursera.org)
   description: | # this will include new lines to allow paragraphs
-    Description of qualification
+    - Cloud Compu8ng Concepts: gossip, membership, P2P system, 8me and order of events, classical distributed algorithms, e.g. Paxos, Chandy–Lamport, etc.
+    - Cloud Systems and Infrastructure: virtualiza8on and containers, cloud service models, cloud-based storage services, etc.
+    - Cloud Networking: network virtualiza8on, rou8ng, conges8on control, inter-datacenter networking, etc.

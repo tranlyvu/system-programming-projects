@@ -1,10 +1,39 @@
-# Experience template
+# Experience template 
 - layout: left
-  company: Company name
-  link: Link to company (optional)
-  job_title: Job title
-  dates: Date Range (eg. November 2016 - present)
+  company: Shopee 
+  link: shopee.sg
+  job_title: Senior Engineer
+  dates: April 2020 - present
   quote: >
-   Short description of the company (optional)
+   Singapore
   description: | # this will include new lines to allow paragraphs
-    Description of role
+    - Deep team (Responsible for Shopee’s search, recommendation and data-related projects)
+
+- layout: left
+  company: Accellion 
+  link: accellion.com
+  job_title:  System Software Engineer
+  dates: November 2018 - March 2020
+  quote: >
+   Singapore
+  description: | # this will include new lines to allow paragraphs
+    - Developed and maintained system library which interfaces database access and services using Python; participated in the post-
+    development stage by coordinating closely with QA for test plans creation and Security team for security review.
+    - Led the technical design and implementation of system monitoring service and integration of remote appliances; i.e. Gemalto Hardware
+    Security Module for data storage security, FireEye Malware Analysis for malware scanning, etc.
+    - Resolving 100+ reported tickets within a year including fixing software bugs, security issues, as well as responding to incidents escalated
+    by customers to enhance system security, stability and guarantee the services to run smoothly.
+- layout: left
+  company: National Cybersecurity R&D Lab
+  link: ncl.sg
+  job_title: IT Engineer
+  dates: February 2016 - October 2018
+  quote: >
+   Singapore
+  description: | # this will include new lines to allow paragraphs
+    - Architected and built a bare-metal network testbed focusing on emulating networked systems within 12 months to prepare for the
+    launch of public cloud infrastructure, supporting over 70 projects from academia, industries, and government agencies.
+    - Ensured a highly connected network and reliable system by managing in-house infrastructure, performing troubleshooting and failure
+    documentation, resulting in more than 95% service uptime.
+    - Designed and delivered RESTfull web services with Java to provide users access to bare-metal infrastructure; ensured software quality
+    standard by maintaining a staging system used in testing new features & releases for the development.
