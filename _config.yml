@@ -5,6 +5,7 @@ repository: Git repository where your resume will be hosted, only required if yo
 # Personal info
 name: Tran Ly Vu
 title: Senior Engineer
+award: Time magazine's 2006 Person of the Year
 email: vutransingapore@gmail.com
 #phone: Your phone number (optional)
 website: distributedsystemsblog.com
@@ -51,6 +52,9 @@ about_content: | # this will include new lines to allow paragraphs
   - E commerce (Shopee, 2020 - Present)
   - Private Cloud Enterprise Solutions (Accellion, 2018 - 2020)
   - Public Bare Metal Cloud (Singapore National Cybersecurity R&D Lab, 2015-2018) 
+
+
+  I, together with many others, were named Time magazine's 2006 Person of the Year.
 
 # Projects Section
 # projects_title: Projects #(Use this to override about projects section title)
