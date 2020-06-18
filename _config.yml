@@ -9,7 +9,8 @@ award: Time magazine's 2006 Person of the Year
 email: vutransingapore@gmail.com
 #phone: Your phone number (optional)
 website: distributedsystemsblog.com
-resume: tiny.cc/tranlyvu
+resume-pdf: tiny.cc/tranlyvu-pdf
+resume-word: tiny.cc/tranlyvu-word
 
 # Dark Mode (true/false/never)
 darkmode: false
@@ -52,7 +53,6 @@ about_content: | # this will include new lines to allow paragraphs
   - E commerce (Shopee, 2020 - Present)
   - Private Cloud Enterprise Solutions (Accellion, 2018 - 2020)
   - Public Bare Metal Cloud (Singapore National Cybersecurity R&D Lab, 2015-2018) 
-
 
   I, together with many others, were named Time magazine's 2006 Person of the Year.
 
