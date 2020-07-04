@@ -1,0 +1,17 @@
+Searching 83 files for "ming languages: Python, Go"
+
+/Users/tran.vu/Desktop/project/tranlyvu.github.io/_config.yml:
+   72   - DevOps technologies: vSphere Hypervisor, Ansible, Packer, Vagrant, Kubernetes/Kubeflow, Git.
+   73   - System technologies: PXE bootstrapping, Network File Storage, Apache Solr, Linux, Nginx, HAProxy, SQL database.
+   74:  - Programming languages: Python, Golang.
+   75  
+   76  # Footer
+
+/Users/tran.vu/Desktop/project/tranlyvu.github.io/_site/index.html:
+  188    <li>DevOps technologies: vSphere Hypervisor, Ansible, Packer, Vagrant, Kubernetes/Kubeflow, Git.</li>
+  189    <li>System technologies: PXE bootstrapping, Network File Storage, Apache Solr, Linux, Nginx, HAProxy, SQL database.</li>
+  190:   <li>Programming languages: Python.</li>
+  191  </ul>
+  192  
+
+2 matches across 2 files

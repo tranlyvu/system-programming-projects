@@ -7,7 +7,7 @@
   quote: >
    Singapore
   description: | # this will include new lines to allow paragraphs
-    - Designed, deployed and maintained an in-house, on-prem Kubeflow-based cluster to provide ML engineers with internal shared infrastructure for research purposes.
+    - Designed, deployed and maintained an on-premise Kubeflow-based GPU scheduling system to provide Machine Learning engineers with internal shared infrastructure for research purposes.
 
 - layout: left
   company: Accellion 

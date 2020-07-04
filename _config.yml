@@ -5,7 +5,7 @@ repository: Git repository where your resume will be hosted, only required if yo
 # Personal info
 name: Tran Ly Vu
 title: Senior Engineer
-award: Time magazine's 2006 Person of the Year
+#award: Time magazine's 2006 Person of the Year
 email: vutransingapore@gmail.com
 #phone: Your phone number (optional)
 website: distributedsystemsblog.com
@@ -54,7 +54,7 @@ about_content: | # this will include new lines to allow paragraphs
   - Private Cloud Enterprise Solutions (Accellion, 2018 - 2020)
   - Public Bare Metal Cloud (Singapore National Cybersecurity R&D Lab, 2015-2018) 
 
-  I, together with many others, were named Time magazine's 2006 Person of the Year.
+ # I, together with many others, were named Time magazine's 2006 Person of the Year.
 
 # Projects Section
 # projects_title: Projects #(Use this to override about projects section title)
@@ -69,9 +69,9 @@ about_content: | # this will include new lines to allow paragraphs
 # more_title: A Little More About Me #(Use this to override about more section title)
 more_content: | # this will include new lines to allow paragraphs
  - Professional expertise: software development, system engineering and troubleshooting, microservices architecture.
- - Technologies (Proficient): TCP/IP networking stack, Nginx, Git, SQL database, Linux.
- - Technologies (Exposure): PXE bootstrapping, Network File Storage, Ansible, Packer, Apache Solr, Kubernetes/Kubeflow.
- - Programming languages: Python, Golang.
+ - DevOps technologies: vSphere Hypervisor, Ansible, Packer, Vagrant, Kubernetes/Kubeflow, Git.
+ - System technologies: PXE bootstrapping, Network File Storage, Apache Solr, Linux, Nginx, HAProxy, SQL database.
+ - Programming languages: Python.
 
 # Footer
 footer_show_references: true
