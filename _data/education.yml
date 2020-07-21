@@ -15,6 +15,4 @@
   quote: >
     University of Illinois at Urbana-Champaign (via coursera.org)
   description: | # this will include new lines to allow paragraphs
-    - Cloud Computing Concepts: gossip, membership, P2P system, time and order of events, classical distributed algorithms, e.g. Paxos, Chandy–Lamport, etc.
-    - Cloud Systems and Infrastructure: virtualization and containers, cloud service models, cloud-based storage services, etc.
-    - Cloud Networking: network virtualization, routing, congestion control, inter-datacenter networking, etc.
+    - Concepts: gossip, membership, time synchronization and logical clock, classical distributed algorithms, e.g. Paxos, Chandy–Lamport, etc.
