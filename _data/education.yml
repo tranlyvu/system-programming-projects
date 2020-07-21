@@ -15,4 +15,4 @@
   quote: >
     University of Illinois at Urbana-Champaign (via coursera.org)
   description: | # this will include new lines to allow paragraphs
-    - Concepts: gossip, membership, time synchronization and logical clock, classical distributed algorithms, e.g. Paxos, Chandy–Lamport, etc.
+    Concepts: gossip, membership, time synchronization and logical clock, classical distributed algorithms, e.g. Paxos, Chandy–Lamport, etc.
