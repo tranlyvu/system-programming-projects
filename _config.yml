@@ -9,7 +9,7 @@ title: Senior Engineer
 email: vutransingapore@gmail.com
 #phone: Your phone number (optional)
 website: distributedsystemsblog.com
-resume-pdf: tiny.cc/tranlyvu-pdf
+resume-pdf: tiny.cc/tranlyvu
 resume-word: tiny.cc/tranlyvu-word
 
 # Dark Mode (true/false/never)
@@ -49,7 +49,7 @@ linkedin_username: tranlyvu
 # about_title: About Me (Use this to override about section title)
 about_profile_image: assets/distributed-systems-blog-bio.jpg
 about_content: | # this will include new lines to allow paragraphs
-  I am an experienced engineer in both software development and system engineering. I have worked in:
+  I am an enginer located in Singapore. I have worked in:
   - E commerce (Shopee, 2020 - Present)
   - Private Cloud Enterprise Solutions (Accellion, 2018 - 2020)
   - Public Bare Metal Cloud (Singapore National Cybersecurity R&D Lab, 2015-2018) 
