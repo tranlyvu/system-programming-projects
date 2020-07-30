@@ -122,16 +122,6 @@
           {{ site.website_title | default: "Web" }}: {% include a.html href=site.website %}{{ site.website | escape }}</a>
         </p>
       {%- endif -%}
-      {%- if site.resume-pdf -%}
-        <p>
-          {{ site.resume_title | default: "Resume-pdf" }}: {% include a.html href=site.resume-pdf %}{{ site.resume-pdf | escape }}</a>
-        </p>
-      {%- endif -%}
-      {%- if site.resume-word -%}
-        <p>
-          {{ site.resume_title | default: "Resume-word" }}: {% include a.html href=site.resume-word %}{{ site.resume-word | escape }}</a>
-        </p>
-      {%- endif -%}
     </div>
   </div>
 </div>
