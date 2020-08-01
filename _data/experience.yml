@@ -7,7 +7,8 @@
   quote: >
    Singapore
   description: | # this will include new lines to allow paragraphs
-    - Designed, deployed and administrated an on-premise Kubernetes/Kubeflow-based GPU scheduling system of 30 servers to provide Machine Learning engineers with internal shared infrastructure for research purposes.
+    - Designed, deployed and administered an on-premise Kubenetes-based (with Kubeflow and Istio) GPU scheduler cluster of 30 servers to 
+    provide Machine Learning engineers with internal shared infrastructure for research purposes.
 
 - layout: left
   company: Accellion 
@@ -31,9 +32,9 @@
   quote: >
    Singapore
   description: | # this will include new lines to allow paragraphs
-    - Architected and built a bare-metal network testbed focusing on emulating networked systems within 12 months to prepare for the
-    launch of public cloud infrastructure, supporting over 70 projects from academia, industries, and government agencies.
+    - Architected and built a bare-metal network testbed focusing on emulating networked systems within 12 months to provide public cloud 
+    infrastructure, supporting over 70 projects from academia, industries, and government agencies.
     - Ensured a highly connected network and reliable system by managing in-house infrastructure, performing troubleshooting and failure
     documentation, resulting in more than 95% service uptime.
-    - Designed and delivered RESTfull web services with Java to provide users access to bare-metal infrastructure; ensured software quality
+    - Designed and delivered RESTful web services with Java to provide users access to bare-metal infrastructure; ensured software quality
     standard by maintaining a staging system used in testing new features & releases for the development.
