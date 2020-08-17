@@ -67,8 +67,9 @@ about_content: | # this will include new lines to allow paragraphs
 # more_title: A Little More About Me #(Use this to override about more section title)
 more_content: | # this will include new lines to allow paragraphs
  - Professional expertise: software development, system engineering and troubleshooting, microservices architecture.
- - DevOps technologies: vSphere Hypervisor, Ansible, Packer, Vagrant, Kubernetes/Kubeflow, Git.
  - System technologies: PXE bootstrapping, Network File Storage, Apache Solr, Linux, Nginx, HAProxy, SQL database.
+ - DevOps technologies: vSphere Hypervisor, Ansible, Packer, Vagrant, Git.
+ - Cloud-Native technologies: CoreDNS, Istio, NGINX Ingress Controller, Prometheus, Kubernetes.
  - Programming languages: Python.
 
 # Footer

@@ -7,8 +7,10 @@
   quote: >
    Singapore
   description: | # this will include new lines to allow paragraphs
-    - Designed, deployed and administered an on-premise Kubenertes-based (with Kubeflow and Istio) GPU scheduler cluster of 30 servers to 
-    provide Machine Learning engineers with internal shared infrastructure for research purposes.
+    - Responsible for building in-house Machine Learning infrastructure; designed, deployed, and administered an on-premise Kubernetes-based GPU scheduling platform with the integration of:
+    ✔ Machine Learning toolkit: Kubeflow
+    ✔ Service mesh: Istio
+    ✔ Storage class: GlusterFS
 
 - layout: left
   company: Accellion 
