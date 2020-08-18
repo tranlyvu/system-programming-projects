@@ -47,8 +47,10 @@ linkedin_username: tranlyvu
 # about_title: About Me (Use this to override about section title)
 about_profile_image: assets/distributed-systems-blog-bio.jpg
 about_content: | # this will include new lines to allow paragraphs
-  I am an enginer located in Singapore. I have worked in:
-  - E commerce (Shopee, 2020 - Present)
+  I am an experienced engineer with professional expertise in software development, TCP/IP stack, Linux troubleshooting, microservices and cloud-native architectures.
+  
+  I have worked in:
+  - E-commerce (Shopee, 2020 - Present)
   - Private Cloud Enterprise Solutions (Accellion, 2018 - 2020)
   - Public Bare Metal Cloud (Singapore National Cybersecurity R&D Lab, 2015-2018) 
 
@@ -66,10 +68,10 @@ about_content: | # this will include new lines to allow paragraphs
 # More Section
 # more_title: A Little More About Me #(Use this to override about more section title)
 more_content: | # this will include new lines to allow paragraphs
- - Professional expertise: software development, TCP/IP, Linux system and troubleshooting, microservices and cloud-native applications.
+ - Professional expertise: software development, TCP/IP stack, Linux troubleshooting, microservices and cloud-native applications.
  - System services: PXE bootstrapping, Network File Storage, Apache Solr, Nginx, HAProxy, SQL database.
  - DevOps technologies: vSphere Hypervisor, Ansible, Packer, Vagrant, Docker, Git.
- - Cloud-Native technologies: CoreDNS, Istio, NGINX Ingress Controller, Prometheus, Kubernetes.
+ - Kubernetes integrations: CoreDNS, Istio, NGINX Ingress Controller, Prometheus, Kubeflow.
  - Programming languages: Python.
 
 # Footer

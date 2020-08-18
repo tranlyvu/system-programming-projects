@@ -8,9 +8,9 @@
    Singapore
   description: | # this will include new lines to allow paragraphs
     - Responsible for building in-house Machine Learning infrastructure; designed, deployed, and administered an on-premise Kubernetes-based GPU scheduling platform with the integration of:
-    ✔ Machine Learning toolkit: Kubeflow
-    ✔ Service mesh: Istio
-    ✔ Storage class: GlusterFS
+      ✔ Machine Learning toolkit: Kubeflow
+      ✔ Service mesh: Istio
+      ✔ Storage class: GlusterFS
 
 - layout: left
   company: Accellion 
