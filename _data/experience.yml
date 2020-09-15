@@ -7,10 +7,12 @@
   quote: >
    Singapore
   description: | # this will include new lines to allow paragraphs
-    - Responsible for building in-house Machine Learning infrastructure; designed, deployed, and administered an on-premise Kubernetes-based GPU scheduling platform with the integration of:
+    - Responsible for building in-house Machine Learning infrastructure; designed, deployed, and administered an on-premise Kubernetes-based GPU scheduling platform with add-ons::
       ✔ Machine Learning toolkit: Kubeflow
-      ✔ Service mesh: Istio
+      ✔ Networking: Istio for service mesh and ingress
       ✔ Storage class: GlusterFS
+
+    - Designed and developed shared A/B testing platform that used by product lines across company to evaluate usrs data and make better decision; the core logic isbased on Google research paper's Overlapping Experiment Infrastructure
 
 - layout: left
   company: Accellion 

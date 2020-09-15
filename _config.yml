@@ -72,7 +72,7 @@ more_content: | # this will include new lines to allow paragraphs
  - System services: PXE bootstrapping, Network File Storage, Apache Solr, Nginx, HAProxy, SQL database.
  - DevOps technologies: vSphere Hypervisor, Ansible, Packer, Vagrant, Docker, Git.
  - Kubernetes integrations: CoreDNS, Istio, NGINX Ingress Controller, Prometheus, Kubeflow.
- - Programming languages: Python.
+ - Programming languages: Golang, Python.
 
 # Footer
 footer_show_references: true
