@@ -7,11 +7,13 @@
   quote: >
    Singapore
   description: | # this will include new lines to allow paragraphs
-    - Responsible for building in-house Machine Learning infrastructure; designed, deployed, and administered an on-premise Kubernetes-based GPU scheduling platform with add-ons:
-      ✔ Machine Learning toolkit: Kubeflow
+    - Led the design, deployment, and administration of a machine learning platform to orchestrate model training frameworks running 
+    on Kubernetes with the integration of:
+      ✔ Machine Learning orchestration toolkit: Kubeflow
       ✔ Networking: Istio for service mesh and ingress
       ✔ Storage class: GlusterFS
-    - Designed and developed shared A/B testing platform with Golang to help all departments across company to evaluate users data and make better decision; the core logic is based on Google research paper's Overlapping Experiment Infrastructure
+    - Led the design and development of a shared experiment platform in Golang to help all departments to evaluate users' data with 
+    A/B testing and make better decisions; the core logic is based on Google paper’s Overlapping Experiment Infrastructure.
 
 - layout: left
   company: Accellion 
